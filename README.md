@@ -5,8 +5,8 @@ This is my website that is themed like an old school BBS.
 ## installing
 
 ```
-git clone https://github.com/moncheeta/prime8.git .
-./setup.sh
+git clone https://github.com/moncheeta/prime8.git
+./prime8/setup.sh
 ```
 
 ## running
