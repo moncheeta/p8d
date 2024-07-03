@@ -7,5 +7,8 @@ apt update -y && apt upgrade -y
 apt install -y certbot
 ./ssl.sh
 
+# docker
+docker compose build
+
 # apply all updates
 reboot
