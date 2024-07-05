@@ -37,15 +37,5 @@ services:
     restart: always
     stop_grace_period: 1m
 
-  git:
-    container_name: git
-    image: bacnh85/gitolite-cgit
-    env_file: git.env
-    volumes:
-      - git:/var/lib/git/
-    ports:
-      - "9418:9418"
-
 volumes:
   mail:
-  git:
