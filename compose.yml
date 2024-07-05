@@ -6,8 +6,8 @@ services:
     ports:
       - "443:443"
     volumes:
-      - /etc/letsencrypt/live/prime8.dev/fullchain.pem:/ssl/fullchain.pem
-      - /etc/letsencrypt/live/prime8.dev/privkey.pem:/ssl/privkey.pem
+      - /etc/letsencrypt/live/prime8.dev/fullchain.pem:/ssl/fullchain.pem:ro
+      - /etc/letsencrypt/live/prime8.dev/privkey.pem:/ssl/privkey.pem:ro
     restart: always
     stop_grace_period: 1m
 
@@ -28,7 +28,7 @@ services:
       - mail:/state/:/var/mail-state/
       - mail:/logs/:/var/log/mail/
       - mail:/config/:/tmp/docker-mailserver/
-      - /etc/letsencrypt/:/etc/letsencrypt/
+      - /etc/letsencrypt/:/etc/letsencrypt/:ro
     cap_add:
       - NET_ADMIN
     healthcheck:
