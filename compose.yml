@@ -10,6 +10,7 @@ services:
       - /etc/letsencrypt/live/prime8.dev/privkey.pem:/ssl/privkey.pem
     restart: always
     stop_grace_period: 1m
+
   mail:
     container_name: mail
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
@@ -23,10 +24,10 @@ services:
       - "993:993"  # IMAP4 (implicit TLS)
     volumes:
       - /etc/localtime:/etc/localtime/:ro
-      - /var/mail/data/:/var/mail/
-      - /var/mail/state/:/var/mail-state/
-      - /var/mail/logs/:/var/log/mail/
-      - /var/mail/config/:/tmp/docker-mailserver/
+      - mail:/data/:/var/mail/
+      - mail:/state/:/var/mail-state/
+      - mail:/logs/:/var/log/mail/
+      - mail:/config/:/tmp/docker-mailserver/
       - /etc/letsencrypt/:/etc/letsencrypt/
     cap_add:
       - NET_ADMIN
@@ -36,3 +37,18 @@ services:
       retries: 0
     restart: always
     stop_grace_period: 1m
+
+  git:
+    container_name: git
+    image: bacnh85/gitolite-cgit
+    env_file: git.env
+    volumes:
+      - git:/var/lib/git/
+    ports:
+      - "22:22"
+      - "80:80"
+      - "9418:9418"
+
+volumes:
+  mail:
+  git:
