@@ -1,7 +1,6 @@
 services:
   bbs:
     container_name: bbs
-    hostname: prime8.dev
     image: moncheeta/bbs
     ports:
       - "443:443"
@@ -13,8 +12,8 @@ services:
 
   mail:
     container_name: mail
-    hostname: mail.prime8.dev
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    hostname: mail.prime8.dev
     env_file: mail.env
     ports:
       - "25:25"    # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
@@ -40,14 +39,11 @@ services:
 
   git:
     container_name: git
-    hostname: git.prime8.dev
     image: bacnh85/gitolite-cgit
     env_file: git.env
     volumes:
       - git:/var/lib/git/
     ports:
-      - "22:22"
-      - "80:80"
       - "9418:9418"
 
 volumes:
