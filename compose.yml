@@ -46,6 +46,7 @@ services:
     volumes:
       - git:/var/lib/git/
     ports:
+      - "22:22"
       - "80:80"
       - "9418:9418"
 
