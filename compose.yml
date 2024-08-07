@@ -23,10 +23,10 @@ services:
       - "993:993"  # IMAP4 (implicit TLS)
     volumes:
       - /etc/localtime:/etc/localtime/:ro
-      - mail:/data/:/var/mail/
-      - mail:/state/:/var/mail-state/
-      - mail:/logs/:/var/log/mail/
-      - mail:/config/:/tmp/docker-mailserver/
+      - ./docker-data/dms/mail-data/:/var/mail/
+      - ./docker-data/dms/mail-state/:/var/mail-state/
+      - ./docker-data/dms/mail-logs/:/var/log/mail/
+      - ./docker-data/dms/config/:/tmp/docker-mailserver/
       - /etc/letsencrypt/:/etc/letsencrypt/:ro
     cap_add:
       - NET_ADMIN
@@ -36,6 +36,3 @@ services:
       retries: 0
     restart: always
     stop_grace_period: 1m
-
-volumes:
-  mail:
