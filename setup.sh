@@ -26,4 +26,4 @@ sudo sed -i -e 's/^#\?PasswordAuthentication .*/PasswordAuthentication no/' \
             -e 's/^#\?Port .*/Port $PORT/' \
             /etc/ssh/sshd_config
 echo "switched port to $PORT"
-sudo systemctl restart sshd
+sudo systemctl restart ssh
