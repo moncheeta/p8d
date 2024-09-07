@@ -8,7 +8,7 @@ Run `sh <(curl -s https://raw.githubusercontent.com/moncheeta/p8d/master/downloa
 
 # setup
 
-Run `setup.sh` to properly setup all the services. Afterwards, it's recommended to restart the server.
+First of all, make sure you copied your ssh public key on the server. If not, you can use the `ssh-copy-id` command. Next, run `setup.sh` to properly setup all the services. Afterwards, it's recommended to restart the server.
 
 # run
 
