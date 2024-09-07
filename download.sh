@@ -5,6 +5,7 @@ apt update -y && apt upgrade -y
 
 echo "adding user p8d"
 useradd -m -G sudo,docker p8d
+passwd p8d
 
 echo "cloning repo"
 git clone https://github.com/moncheeta/p8d.git /p8d/
