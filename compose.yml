@@ -26,7 +26,7 @@ services:
       - ./mail/state/:/var/mail-state/
       - ./mail/logs/:/var/log/mail/
       - ./mail/config/:/tmp/docker-mailserver/
-      - ./web/data/:/etc/caddy/certificates/
+      - ./web/data/certificates/:/etc/certificates/
     cap_add:
       - NET_ADMIN
     healthcheck:
