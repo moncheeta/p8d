@@ -28,6 +28,8 @@ services:
       - ./mail/logs/:/var/log/mail/
       - ./mail/config/:/tmp/docker-mailserver/
       - ./web/data/certificates/:/etc/certificates/
+    depends_on:
+      - web
     cap_add:
       - NET_ADMIN
     healthcheck:
