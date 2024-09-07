@@ -8,7 +8,7 @@ Run `sh <(curl -s https://raw.githubusercontent.com/moncheeta/p8d/master/downloa
 
 # setup
 
-Run `setup.sh` to properly setup all the services.
+Run `setup.sh` to properly setup all the services. Afterwards, it's recommended to restart the server.
 
 # run
 
