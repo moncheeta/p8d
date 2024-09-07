@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% import "nav.html" as nav %}
+{% block navbar %}
+{{ nav::bar(active="") }}
+{% endblock %}
+
+{% block content %}
+<div id="message">
+  <h1>not found</h1>
+</div>
+<style>
+  #content {
+    padding: 0px !important;
+  }
+
+  #message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+</style>
+<script>
+  _386 = { fastLoad: true };
+</script>
+{% endblock %}

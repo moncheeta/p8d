@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% import "nav.html" as nav %}
+{% block navbar %}
+{{ nav::bar(active="home") }}
+{% endblock %}
+
+{% block content %}
+<div id="logo">
+  <div>
+    <pre id="firstname">
+     _                 _
+    | |               (_)
+  __| | __ _ _ __ ___  _  __ _ _ __
+ / _` |/ _` | '_ ` _ \| |/ _` | '_ \
+| (_| | (_| | | | | | | | (_| | | | |
+ \__,_|\__,_|_| |_| |_|_|\__,_|_| |_|
+    </pre>
+    <a href="mailto:damian@prime8.dev">damian@prime8.dev</a>
+  </div>
+  <pre id="middle" class="hidden-phone"></pre>
+  <pre id="lastname" class="hidden-phone">
+                         _
+                        | |
+ _ __ ___  _   _ _ __ __| | __ _
+| '_ ` _ \| | | | '__/ _` |/ _` |
+| | | | | | |_| | | | (_| | (_| |
+|_| |_| |_|\__, |_|  \__,_|\__,_|
+            __/ |
+           |___/</pre>
+  <script>
+    const heights = [
+      document.getElementById("firstname").textContent.split("\n").length,
+      document.getElementById("lastname").textContent.split("\n").length,
+    ];
+    const max_height = Math.max(...heights);
+    document.getElementById("middle").textContent = " \n".repeat(max_height);
+  </script>
+  <style>
+    #logo {
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #firstname, #middle, #lastname {
+      display: table-cell;
+    }
+  </style>
+</div>
+<p class="lead" style="text-align: center">
+  Terminal enthusiast, learning from Curious George (the curious part, not the
+  monkey business). Systems and backend programming are my focus. Striving to
+  turn spaghetti code into well-structured algorithms and make every line
+  count with efficiency and creativity. Making computers follow my lead, even
+  when they have their own ideas.
+</p>
+<div>
+<div style="display: table; width: 100%">
+  <div style="display: table-cell; white-space: nowrap">
+    <h3>works with:</h3>
+    <ul>
+      <li style="color: #ffc40d">zig</li>
+      <li style="color: #9d261d">rust</li>
+      <li style="color: #bdb7af">c</li>
+      <li style="color: #049cdb">c++</li>
+      <li style="color: #ffc40d">python</li>
+    </ul>
+    <h3>learning more about:</h3>
+    <ul>
+      <li style="color: #049cdb">go</li>
+      <li style="color: #ffc40d">java</li>
+    </ul>
+    <div class="visible-phone">
+      <h3>activity:</h3>
+      <pre id="activity-small">Loading activity...</pre>
+    </div>
+  </div>
+  <div style="display: table-cell; vertical-align: middle">
+    <div style="display: flex; justify-content: center">
+      <div class="hidden-phone">
+        <h3>activity:</h3>
+        <pre id="activity-big">Loading activity...</pre>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/wakatime.js"></script>
+<style>
+  #content {
+    max-width: 800px !important;
+    margin: auto !important;
+  }
+</style>
+{% endblock %}

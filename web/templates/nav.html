@@ -1,0 +1,21 @@
+{% macro bar(active) %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <a class="brand" href="/">prime8</a>
+    <div class="nav-collapse collapse">
+      <ul class="nav">
+        {% for tab in config.extra.tabs %}
+        <li {% if tab.name == active %} class="active" {% endif %}>
+          <a href="{{ tab.url }}">{{ tab.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+<style>
+  .brand {
+    margin-left: 0 !important;
+  }
+</style>
+{% endmacro %}

@@ -1,6 +1,6 @@
-# prime8
+# p8d
 
-This is my website that is themed like an old school BBS.
+This is my website located at prime8.dev
 
 ## installing
 

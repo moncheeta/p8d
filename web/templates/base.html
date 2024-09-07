@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>prime8</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        visibility: hidden;
+        min-height: 100vh;
+      }
+
+      #content {
+        padding: 24px 4px 8px 4px;
+      }
+
+      pre {
+        color: #E8E6E3 !important;
+        background-color: #000084 !important;
+      }
+    </style>
+    <link href="/css/bootstrap.css" rel="stylesheet" media="screen" />
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script>
+      _386 = { onePass: true };
+    </script>
+    <script src="/js/bootstrap.js"></script>
+  </head>
+
+  <body>
+    {% block navbar %} {% endblock %}
+
+    <div id="content">{% block content %} {% endblock %}</div>
+  </body>
+</html>
