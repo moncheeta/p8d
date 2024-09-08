@@ -1,7 +1,7 @@
 services:
   web:
     container_name: web
-    build: .
+    image: moncheeta/website:latest
     ports:
       - "80:80"
       - "443:443"
