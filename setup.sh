@@ -18,6 +18,9 @@ sudo ufw allow 2222,80,443,25,143,465,587,993,22,9418/tcp
 sudo ufw enable
 echo "firewall set up"
 
+echo "copy your ssh public key to server"
+read -p "press enter to continue"
+
 echo "securing ssh"
 PORT=2222
 sudo sed -i -e "s/^#\?PasswordAuthentication .*/PasswordAuthentication no/" \
