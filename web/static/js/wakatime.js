@@ -1,6 +1,6 @@
 function createRow(data, max_length, total_hours) {
   const { date, hours, text } = data;
-  var row = date.padEnd(max_length);
+  var row = date.toLowerCase().padEnd(max_length);
   row += " | ";
 
   if (hours > 0 && total_hours > 0) {
@@ -40,8 +40,9 @@ $.ajax({
   dataType: "jsonp",
   success: function (response) {
     const chart = createChart(response.data);
-    document.getElementById("activity-small").textContent = chart;
-    document.getElementById("activity-big").textContent = chart;
+    for (let element of document.getElementsByClassName("activity")) {
+      element.textContent = chart;
+    }
   },
   error: function (error) {
     console.error("Error fetching data:", error);
