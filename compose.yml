@@ -1,4 +1,15 @@
 services:
+  updates:
+    container_name: updates
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      - "--interval"
+      - "60"
+      - "--rolling-restart"
+      - "--cleanup"
+
   web:
     container_name: web
     image: moncheeta/website:latest
