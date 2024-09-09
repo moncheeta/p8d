@@ -28,13 +28,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "25:25"
-      - "143:143"
-      - "465:465"
-      - "587:587"
-      - "993:993"
-      - "22:22"
-      - "9418:9418"
     networks:
       - common
     volumes:
@@ -48,12 +41,12 @@ services:
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
     hostname: mail.prime8.dev
     env_file: ./mail/env
-    expose:
-      - "25"
-      - "143"
-      - "465"
-      - "587"
-      - "993"
+    ports:
+      - "25:25"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
     networks:
       - common
     volumes:

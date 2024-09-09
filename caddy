@@ -16,10 +16,4 @@ prime8.dev {
   }
 }
 
-mail.prime8.dev {
-    reverse_proxy mail:25
-    reverse_proxy mail:143
-    reverse_proxy mail:465
-    reverse_proxy mail:587
-    reverse_proxy mail:993
-}
+mail.prime8.dev {}
