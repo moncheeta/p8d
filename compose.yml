@@ -68,21 +68,5 @@ services:
       - NET_ADMIN
     restart: always
 
-  git:
-    container_name: git
-    image: rusian/gitolite-cgit
-    env_file: ./git/env
-    volumes:
-      - ./git/repos/:/var/lib/git/
-      - ./git/ssh/:/etc/ssh/
-    expose:
-      - "22"
-      - "80"
-      - "9418"
-    networks:
-      - common
-    tty: true
-    restart: always
-
 networks:
   common:
