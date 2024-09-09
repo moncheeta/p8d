@@ -73,8 +73,8 @@ services:
     image: rusian/gitolite-cgit
     env_file: ./git/env
     volumes:
-      - ./git/repos/:/var/lib/git
-      - ./git/ssh/:/etc/ssh
+      - ./git/repos/:/var/lib/git/
+      - ./git/ssh/:/etc/ssh/
     expose:
       - "22"
       - "80"
