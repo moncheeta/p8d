@@ -1,8 +1,8 @@
 #!/bin/sh
 
 echo "setting up services"
-docker compose build
-docker compose up mail -d
+sudo touch /var/log/mail/mail.log
+docker compose up -d
 docker compose exec -it mail setup email add damian@prime8.dev
 docker compose restart mail
 docker compose exec -it mail setup alias add postmaster@prime8.dev damian@prime8.dev

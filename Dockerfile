@@ -7,8 +7,7 @@ RUN ["zola", "build"]
 
 FROM caddy:latest
 
-COPY ./Caddyfile /etc/caddy/Caddyfile
+COPY ./caddy /etc/caddy/Caddyfile
 COPY --from=builder /src/public/ /web/
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443

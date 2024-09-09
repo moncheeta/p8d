@@ -1,0 +1,32 @@
+*.prime8.dev {
+  tls damian@prime8.dev
+}
+
+prime8.dev {
+	root * /web/
+	file_server
+	try_files {path} {path}.html
+
+  handle_errors {
+      @404 {
+          expression {http.error.status_code} == 404
+      }
+      rewrite @404 /404.html
+      file_server
+  }
+
+  reverse_proxy / ssh git:22
+  reverse_proxy /git git:9418
+}
+
+mail.prime8.dev {
+    reverse_proxy mail:25
+    reverse_proxy mail:143
+    reverse_proxy mail:465
+    reverse_proxy mail:587
+    reverse_proxy mail:993
+}
+
+git.prime8.dev {
+    reverse_proxy git:80
+}

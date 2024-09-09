@@ -1,4 +1,15 @@
 services:
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    volumes:
+      - ./jail:/etc/fail2ban/jail.local
+      - /var/log/mail/:/var/log/mail/:ro
+      - /var/log/auth.log:/var/log/auth.log:ro
+    networks:
+      - common
+    restart: always
+
   updates:
     container_name: updates
     image: containrrr/watchtower
@@ -9,6 +20,7 @@ services:
       - "60"
       - "--rolling-restart"
       - "--cleanup"
+    restart: always
 
   web:
     container_name: web
@@ -16,8 +28,17 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "25:25"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+      - "22:22"
+      - "9418:9418"
+    networks:
+      - common
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy:/etc/caddy/Caddyfile
       - ./web/data/:/data/caddy/
       - ./web/config/:/config/caddy/
     restart: always
@@ -27,12 +48,14 @@ services:
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
     hostname: mail.prime8.dev
     env_file: ./mail/env
-    ports:
-      - "25:25" # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
-      - "143:143" # IMAP4 (explicit TLS => STARTTLS)
-      - "465:465" # ESMTP (implicit TLS)
-      - "587:587" # ESMTP (explicit TLS => STARTTLS)
-      - "993:993" # IMAP4 (implicit TLS)
+    expose:
+      - "25"
+      - "143"
+      - "465"
+      - "587"
+      - "993"
+    networks:
+      - common
     volumes:
       - ./mail/data/:/var/mail/
       - ./mail/state/:/var/mail-state/
@@ -43,8 +66,23 @@ services:
       - web
     cap_add:
       - NET_ADMIN
-    healthcheck:
-      test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
-      timeout: 3s
-      retries: 0
     restart: always
+
+  git:
+    container_name: git
+    image: rusian/gitolite-cgit
+    env_file: ./git/env
+    volumes:
+      - ./git/repos/:/var/lib/git
+      - ./git/ssh/:/etc/ssh
+    expose:
+      - "22"
+      - "80"
+      - "9418"
+    networks:
+      - common
+    tty: true
+    restart: always
+
+networks:
+  common:

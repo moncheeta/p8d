@@ -1,0 +1,18 @@
+[DEFAULT]
+bantime  = 10m
+findtime  = 10m
+maxretry  = 5
+
+[postfix]
+enabled   = true
+port      = smtp,ssmtp
+filter    = postfix
+logpath   = /var/log/mail/mail.log
+maxretry  = 3
+
+[dovecot]
+enabled   = true
+port      = imap
+filter    = dovecot
+logpath   = /var/log/mail/mail.log
+maxretry  = 3
