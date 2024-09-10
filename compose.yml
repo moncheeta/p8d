@@ -17,7 +17,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command:
       - "--interval"
-      - "60"
+      - "120"
       - "--rolling-restart"
       - "--cleanup"
     restart: always
@@ -59,6 +59,17 @@ services:
       - web
     cap_add:
       - NET_ADMIN
+    restart: always
+
+  git:
+    container_name: git
+    image: woahbase/alpine-cgit:latest
+    expose:
+      - "80"
+    volumes:
+      - ./git/:/srv/git
+    networks:
+      - common
     restart: always
 
 networks:

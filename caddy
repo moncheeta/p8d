@@ -1,7 +1,12 @@
+{
+    cache
+}
+
 prime8.dev {
 	root * /web/
 	file_server
 	try_files {path} {path}.html
+  cache
 
   handle_errors {
       @404 {
@@ -15,5 +20,12 @@ prime8.dev {
 }
 
 mail.prime8.dev {
+  tls damian@prime8.dev
+}
+
+git.prime8.dev {
+  reverse_proxy http://git:80
+  cache
+
   tls damian@prime8.dev
 }
