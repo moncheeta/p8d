@@ -13,4 +13,4 @@ chown -R p8d /p8d/
 
 cd /p8d/
 echo "now run the setup.sh script to setup services"
-su p8d
+su - p8d -c /p8d/setup.sh
