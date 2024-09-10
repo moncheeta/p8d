@@ -64,10 +64,14 @@ services:
   git:
     container_name: git
     image: woahbase/alpine-cgit:latest
+    ports:
+      - "22"
     expose:
       - "80"
     volumes:
-      - ./git/:/srv/git
+      - ./git/:/git/
+      - ./git/repos/:/repositories/
+      - /etc/ssh:/ssh/
     networks:
       - common
     restart: always
