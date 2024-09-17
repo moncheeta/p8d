@@ -64,6 +64,8 @@ services:
   git:
     container_name: git
     image: woahbase/alpine-cgit:latest
+    environment:
+      - CGIT_SUBPATH=/
     ports:
       - "22"
     expose:
