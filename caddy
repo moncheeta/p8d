@@ -29,3 +29,10 @@ git.prime8.dev {
 
   tls damian@prime8.dev
 }
+
+csc.prime8.dev {
+  reverse_proxy http://csc:80
+  cache
+
+  tls damian@prime8.dev
+}

@@ -76,5 +76,18 @@ services:
       - common
     restart: always
 
+  csc:
+    container_name: csc
+    image: moncheeta/csc:latest
+    environment:
+      - DOMAIN=csc.prime8.dev
+    env_file: ./csc/env
+    volumes:
+      - ./csc/auth.json:/app/google_auth.json
+    expose:
+      - "80"
+    networks:
+      - common
+
 networks:
   common:
