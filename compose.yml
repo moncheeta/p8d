@@ -73,7 +73,7 @@ services:
     container_name: gitweb
     image: mlan/gitweb
     depends_on:
-      - repo
+      - repos
     volumes:
       - ./git/repos/:/var/lib/git/:ro
     expose:
