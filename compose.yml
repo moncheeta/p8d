@@ -61,23 +61,23 @@ services:
       - NET_ADMIN
     restart: always
 
-   repos:
-     container_name: repos
-     image: jgiannuzzi/gitolite
-     ports:
-       - "22:22"
-     volumes:
-       - ./git/repos/:/var/lib/git/
+  repos:
+    container_name: repos
+    image: jgiannuzzi/gitolite
+    ports:
+      - "22:22"
+    volumes:
+      - ./git/repos/:/var/lib/git/
 
   gitweb:
-     container_name: gitweb
-     image: mlan/gitweb
-     depends_on:
-       - repo
-     volumes:
-       - ./git/repos/:/var/lib/git/:ro
-     expose:
-       - "80"
+    container_name: gitweb
+    image: mlan/gitweb
+    depends_on:
+      - repo
+    volumes:
+      - ./git/repos/:/var/lib/git/:ro
+    expose:
+      - "80"
 
   csc:
     container_name: csc
