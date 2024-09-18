@@ -4,7 +4,7 @@ services:
     container_name: fail2ban
     volumes:
       - ./jail:/etc/fail2ban/jail.local
-      - /var/log/mail/:/var/log/mail/:ro
+      - /var/log/mail/mail.log:/var/log/mail/mail.log:ro
       - /var/log/auth.log:/var/log/auth.log:ro
     networks:
       - common
@@ -61,23 +61,23 @@ services:
       - NET_ADMIN
     restart: always
 
-  git:
-    container_name: git
-    image: woahbase/alpine-cgit:latest
-    environment:
-      - CGIT_HOSTNAME=git.prime8.dev
-      - CGIT_SUBPATH=/
-    ports:
-      - "22"
-    expose:
-      - "80"
-    volumes:
-      - ./git/cgitrc:/etc/cgitrc
-      - /etc/ssh:/ssh/
-      - ./git/repos/:/home/git/repositories/
-    networks:
-      - common
-    restart: always
+   repos:
+     container_name: repos
+     image: jgiannuzzi/gitolite
+     ports:
+       - "22:22"
+     volumes:
+       - ./git/repos/:/var/lib/git/
+
+  gitweb:
+     container_name: gitweb
+     image: mlan/gitweb
+     depends_on:
+       - repo
+     volumes:
+       - ./git/repos/:/var/lib/git/:ro
+     expose:
+       - "80"
 
   csc:
     container_name: csc

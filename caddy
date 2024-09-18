@@ -24,7 +24,7 @@ mail.prime8.dev {
 }
 
 git.prime8.dev {
-  reverse_proxy http://git:80
+  reverse_proxy http://gitweb:80
   cache
 
   tls damian@prime8.dev
