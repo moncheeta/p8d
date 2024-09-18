@@ -72,8 +72,8 @@ services:
     expose:
       - "80"
     volumes:
-      - ./git/:/git/
-      - ./git/repos/:/repositories/
+      - ./git/:/home/git/
+      - ./git/repos/:/home/git/repositories/
       - /etc/ssh:/ssh/
     networks:
       - common
