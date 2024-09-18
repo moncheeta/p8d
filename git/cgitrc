@@ -69,7 +69,7 @@ root-readme=/var/www/about.html
 robots=noindex, nofollow
 
 # if cgit messes up links, use a virtual-root. For example has cgit.example.org/ this value:
-virtual-root=CGIT_SUBPATH
+virtual-root=/
 
 side-by-side-diffs=0
 
