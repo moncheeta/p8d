@@ -67,6 +67,7 @@ services:
     environment:
       - CGIT_HOSTNAME=git.prime8.dev
       - CGIT_SUBPATH=/
+      - CGIT_REPODIR=/home/git/repos/
     ports:
       - "22"
     expose:
@@ -74,7 +75,7 @@ services:
     volumes:
       - ./git/cgitrc:/etc/cgitrc
       - /etc/ssh:/ssh/
-      - ./git/repos/:/home/git/repositories/
+      - ./git/repos/:/home/git/repos/
     networks:
       - common
     restart: always
