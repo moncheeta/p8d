@@ -83,7 +83,7 @@ about-filter=/usr/lib/cgit/filters/about-formatting.sh
 snapshots=tar.gz zip
 
 # Specify some default clone urls using macro expansion
-clone-url=ssh://git@prime8.dev/home/git/repos/$CGIT_REPO_URL
+clone-url=ssh://git@prime8.dev/home/git/repositories/$CGIT_REPO_URL
 
 ##
 ## List of common mimetypes
@@ -138,4 +138,4 @@ section-sort=1
 max-repo-count=99999
 remove-suffix=1
 scan-hidden-path=1
-scan-path=/home/git/repos/
+scan-path=/home/git/repositories/
