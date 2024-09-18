@@ -65,6 +65,7 @@ services:
     container_name: git
     image: woahbase/alpine-cgit:latest
     environment:
+      - CGIT_HOSTNAME=git.prime8.dev
       - CGIT_SUBPATH=/
     ports:
       - "22"
