@@ -63,7 +63,7 @@ services:
 
   repos:
     container_name: repos
-    image: jgiannuzzi/gitolite
+    image: moncheeta/gitolite
     env_file: ./git/env
     volumes:
       - ./git/:/var/lib/git/
