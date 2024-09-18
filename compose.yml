@@ -7,7 +7,7 @@ services:
       - /var/log/mail/mail.log:/var/log/mail/mail.log:ro
       - /var/log/auth.log:/var/log/auth.log:ro
     networks:
-      - common
+      - www
     restart: always
 
   updates:
@@ -29,7 +29,7 @@ services:
       - "80:80"
       - "443:443"
     networks:
-      - common
+      - www
     volumes:
       - ./caddy:/etc/caddy/Caddyfile
       - ./web/data/:/data/caddy/
@@ -48,7 +48,7 @@ services:
       - "587:587"
       - "993:993"
     networks:
-      - common
+      - www
     volumes:
       - ./mail/data/:/var/mail/
       - ./mail/state/:/var/mail-state/
@@ -64,10 +64,11 @@ services:
   repos:
     container_name: repos
     image: jgiannuzzi/gitolite
-    ports:
-      - "22:22"
+    env_file: ./git/env
     volumes:
       - ./git/repos/:/var/lib/git/
+    ports:
+      - "22:22"
 
   gitweb:
     container_name: gitweb
@@ -78,6 +79,8 @@ services:
       - ./git/repos/:/var/lib/git/:ro
     expose:
       - "80"
+    networks:
+      - www
 
   csc:
     container_name: csc
@@ -90,7 +93,7 @@ services:
     expose:
       - "80"
     networks:
-      - common
+      - www
 
 networks:
-  common:
+  www:
