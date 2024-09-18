@@ -66,14 +66,14 @@ services:
     image: woahbase/alpine-cgit:latest
     environment:
       - CGIT_HOSTNAME=git.prime8.dev
-      - CGIT_SUBPATH=/
+      - CGIT_SUBPATH=
+      - CGIT_REPODIR=/git/
     ports:
       - "22"
     expose:
       - "80"
     volumes:
-      - ./git/:/home/git/
-      - ./git/repos/:/home/git/repositories/
+      - ./git/:/git/
       - /etc/ssh:/ssh/
     networks:
       - common
