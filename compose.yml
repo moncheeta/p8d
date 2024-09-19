@@ -66,8 +66,8 @@ services:
     image: elsdoerfer/gitolite
     env_file: ./git/env
     volumes:
-      - ./git/repos/:/home/git/repositories/
-      - ./git/ssh/:/etc/ssh/
+      - ./git/repos/:/var/lib/git/repositories/
+      - ./git/ssh/:/var/lib/git/.ssh/
     ports:
       - "22:22"
 
