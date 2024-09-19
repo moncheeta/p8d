@@ -3,7 +3,7 @@ services:
     image: crazymax/fail2ban:latest
     container_name: fail2ban
     volumes:
-      - ./jail:/etc/fail2ban/jail.local
+      - ./jail:/etc/fail2ban/jail.local:ro
       - /var/log/mail/mail.log:/var/log/mail/mail.log:ro
       - /var/log/auth.log:/var/log/auth.log:ro
     networks:
@@ -31,7 +31,7 @@ services:
     networks:
       - www
     volumes:
-      - ./caddy:/etc/caddy/Caddyfile
+      - ./caddy:/etc/caddy/Caddyfile:ro
       - ./web/data/:/data/caddy/
       - ./web/config/:/config/caddy/
     restart: always
@@ -54,7 +54,7 @@ services:
       - ./mail/state/:/var/mail-state/
       - ./mail/logs/:/var/log/mail/
       - ./mail/config/:/tmp/docker-mailserver/
-      - ./web/data/certificates/acme.zerossl.com-v2-dv90/mail.prime8.dev/:/etc/certificates/
+      - ./web/data/certificates/acme.zerossl.com-v2-dv90/mail.prime8.dev/:/etc/certificates/:ro
     depends_on:
       - web
     cap_add:
@@ -77,6 +77,7 @@ services:
       - repos
     volumes:
       - ./git/:/var/lib/git/:ro
+      - ./git/gitweb.conf:/etc/gitweb.conf:ro
     expose:
       - "80"
     networks:
@@ -89,7 +90,7 @@ services:
       - DOMAIN=csc.prime8.dev
     env_file: ./csc/env
     volumes:
-      - ./csc/auth.json:/app/google_auth.json
+      - ./csc/auth.json:/app/google_auth.json:ro
     expose:
       - "80"
     networks:
