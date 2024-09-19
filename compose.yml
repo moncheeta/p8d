@@ -1,6 +1,6 @@
 services:
   fail2ban:
-    image: crazymax/fail2ban:latest
+    image: crazymax/fail2ban
     container_name: fail2ban
     volumes:
       - ./jail:/etc/fail2ban/jail.local:ro
@@ -24,7 +24,7 @@ services:
 
   web:
     container_name: web
-    image: moncheeta/website:latest
+    image: moncheeta/website
     ports:
       - "80:80"
       - "443:443"
@@ -38,7 +38,7 @@ services:
 
   mail:
     container_name: mail
-    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    image: ghcr.io/docker-mailserver/docker-mailserver
     hostname: mail.prime8.dev
     env_file: ./mail/env
     ports:
@@ -84,7 +84,7 @@ services:
 
   csc:
     container_name: csc
-    image: moncheeta/csc:latest
+    image: moncheeta/csc
     environment:
       - DOMAIN=csc.prime8.dev
     env_file: ./csc/env
