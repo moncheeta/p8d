@@ -63,11 +63,11 @@ services:
 
   repos:
     container_name: repos
-    image: elsdoerfer/gitolite
+    image: jgiannuzzi/gitolite
     env_file: ./git/env
     volumes:
-      - ./git/repos/:/var/lib/git/repositories/
-      - ./git/ssh/:/var/lib/git/.ssh/
+      - ./git/:/var/lib/git/
+      - ./git/.ssh/keys/:/etc/ssh/keys/
     ports:
       - "22:22"
 
@@ -77,7 +77,7 @@ services:
     depends_on:
       - repos
     volumes:
-      - ./git/repos/:/srv/git/:ro
+      - ./git/:/srv/git/:ro
     expose:
       - "80"
     networks:
