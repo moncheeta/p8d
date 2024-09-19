@@ -77,7 +77,6 @@ services:
       - repos
     volumes:
       - ./git/:/var/lib/git/:ro
-      - ./git/gitweb.conf:/etc/gitweb.conf:ro
     expose:
       - "80"
     networks:
