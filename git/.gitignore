@@ -1,4 +1,2 @@
-/.gitolite
-/.gitolite.rc
-/.ssh/
-/repositories/
+/ssh/*
+/repos/*

@@ -63,20 +63,21 @@ services:
 
   repos:
     container_name: repos
-    image: jgiannuzzi/gitolite
+    image: elsdoerfer/gitolite
     env_file: ./git/env
     volumes:
-      - ./git/:/var/lib/git/
+      - ./git/repos/:/home/git/repositories/
+      - ./git/ssh/:/etc/ssh/
     ports:
       - "22:22"
 
   gitweb:
     container_name: gitweb
-    image: mlan/gitweb
+    image: rockstorm/gitweb
     depends_on:
       - repos
     volumes:
-      - ./git/:/var/lib/git/:ro
+      - ./git/repos/:/srv/git/:ro
     expose:
       - "80"
     networks:
