@@ -66,6 +66,7 @@ services:
     image: jgiannuzzi/gitolite
     env_file: ./git/env
     volumes:
+      - ./git/.gitolite.rc:/etc/gitolite/gitolite.rc:ro
       - ./git/:/var/lib/git/
       - ./git/.ssh/keys/:/etc/ssh/keys/
     ports:
