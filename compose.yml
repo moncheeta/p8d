@@ -61,24 +61,27 @@ services:
       - NET_ADMIN
     restart: always
 
-  repos:
-    container_name: repos
+  gitolite:
+    container_name: gitolite
     image: jgiannuzzi/gitolite
     env_file: ./git/env
     volumes:
-      - ./git/.gitolite.rc:/etc/gitolite/gitolite.rc:ro
-      - ./git/:/var/lib/git/
-      - ./git/.ssh/keys/:/etc/ssh/keys/
+      - ./git/gitolite.rc:/etc/gitolite/gitolite.rc:ro
+      - ./git/ssh/keys/:/etc/ssh/keys/
+      - ./git/repos/:/var/lib/git/repositories/
+      - ./git/projects.list:/var/lib/git/projects.list
     ports:
       - "22:22"
 
   gitweb:
     container_name: gitweb
-    image: rockstorm/gitweb
+    image: moncheeta/gitweb
     depends_on:
-      - repos
+      - gitolite
     volumes:
-      - ./git/:/srv/git/:ro
+      - ./git/gitweb.conf:/etc/gitweb.conf:ro
+      - ./git/repos/:/srv/git/repositories/:ro
+      - ./git/projects.list:/srv/git/projects.list:ro
     expose:
       - "80"
     networks:

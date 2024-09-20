@@ -1,4 +1,3 @@
-/.gitolite
+/ssh/
+/repos/
 /projects.list
-/.ssh/
-/repositories/
