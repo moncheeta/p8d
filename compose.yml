@@ -67,7 +67,8 @@ services:
     env_file: ./git/env
     volumes:
       - ./git/gitolite.rc:/etc/gitolite/gitolite.rc:ro
-      - ./git/ssh/keys/:/etc/ssh/keys/
+      - ./git/ssh/keys/host/:/etc/ssh/keys/
+      - ./git/ssh/keys/users/:/var/lib/git/.ssh/
       - ./git/repos/:/var/lib/git/repositories/
       - ./git/projects.list:/var/lib/git/projects.list
     ports:
