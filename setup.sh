@@ -19,7 +19,8 @@ sudo ufw enable
 echo "firewall set up"
 
 echo "copy your ssh public key to server"
-read -p "press enter to continue" $KEY
+echo "press enter to continue"
+read KEY
 
 echo "securing ssh"
 PORT=2222
