@@ -3,6 +3,10 @@
 }
 
 prime8.dev {
+    redir https://www.prime8.dev{uri} 301
+}
+
+www.prime8.dev {
 	root * /web/
 	file_server
 	try_files {path} {path}.html
