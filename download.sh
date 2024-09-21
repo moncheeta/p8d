@@ -8,7 +8,7 @@ useradd -m -s /bin/bash -G sudo,docker p8d
 passwd p8d
 
 echo "cloning repo"
-git clone https://github.com/moncheeta/p8d.git /p8d/
+git clone --recursive https://github.com/moncheeta/p8d.git /p8d/
 chown -R p8d /p8d/
 
 cd /p8d/
