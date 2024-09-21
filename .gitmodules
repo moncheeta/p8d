@@ -1,0 +1,3 @@
+[submodule "git/theme"]
+	path = git/theme
+	url = https://github.com/CBenoit/gitweb-dark-theme.git
