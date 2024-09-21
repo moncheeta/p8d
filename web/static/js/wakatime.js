@@ -31,6 +31,10 @@ function createChart(data) {
   table.forEach((row) => {
     chart += createRow(row, max_length, total_hours);
   });
+  var total_minutes = total_hours % 1;
+  total_hours -= total_minutes;
+  total_minutes = Math.ceil(total_minutes * 60);
+  chart += `total: ${total_hours} hours and ${total_minutes} minutes`;
   return chart;
 }
 
