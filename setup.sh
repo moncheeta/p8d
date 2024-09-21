@@ -3,6 +3,8 @@
 echo "setting up services"
 sudo mkdir -p /var/log/mail/
 sudo touch /var/log/mail/mail.log
+printf "GROUP_ID=6454678062\nSCHOOLOGY_DOMAIN=schoology.d214.org\nSCHOOLOGY_API_KEY=\nSCHOOLOGY_API_SECRET=\n" > ./csc/env
+vim ./csc/env
 docker compose up -d
 docker compose exec -it mail setup email add damian@prime8.dev
 docker compose restart mail
