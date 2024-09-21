@@ -1,3 +1,5 @@
+/.gitolite.rc
+/.gitolite/
 /.ssh/
 /repositories/
 /projects.list
