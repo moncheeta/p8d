@@ -92,8 +92,8 @@
             'help',
             'desc',
             'info',
-            'perms',
-            'writable',
+            # 'perms',
+            # 'writable',
 
             # Uncomment or add new commands here.
             # 'create',
