@@ -17,7 +17,7 @@ echo "services are set up"
 echo "setting up firewall"
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw allow 2222,80,443,25,143,465,587,993,22,9418/tcp
+sudo ufw allow 2222,22,80,443,25,143,465,587,993/tcp
 sudo ufw enable
 echo "firewall set up"
 
