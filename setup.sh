@@ -1,6 +1,7 @@
 #!/bin/sh
 
 echo "setting up services"
+sudo mkdir -p /var/log/mail/
 sudo touch /var/log/mail/mail.log
 docker compose up -d
 docker compose exec -it mail setup email add damian@prime8.dev
