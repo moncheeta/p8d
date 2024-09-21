@@ -1,16 +1,7 @@
 services:
-  fail2ban:
-    image: crazymax/fail2ban
-    container_name: fail2ban
-    volumes:
-      - ./jail:/etc/fail2ban/jail.local:ro
-      - /var/log/mail/mail.log:/var/log/mail/mail.log:ro
-      - /var/log/auth.log:/var/log/auth.log:ro
-    restart: always
-
   updates:
     container_name: updates
-    image: containrrr/watchtower
+    image: containrrr/watchtower:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command:
@@ -22,7 +13,7 @@ services:
 
   web:
     container_name: web
-    image: moncheeta/website
+    image: moncheeta/website:latest
     ports:
       - "80:80"
       - "443:443"
@@ -34,7 +25,7 @@ services:
 
   mail:
     container_name: mail
-    image: ghcr.io/docker-mailserver/docker-mailserver
+    image: ghcr.io/docker-mailserver/docker-mailserver:latest
     hostname: mail.prime8.dev
     env_file: ./mail/env
     ports:
@@ -55,9 +46,18 @@ services:
       - NET_ADMIN
     restart: always
 
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    volumes:
+      - ./jail:/etc/fail2ban/jail.local:ro
+      - /var/log/mail/mail.log:/var/log/mail/mail.log:ro
+      - /var/log/auth.log:/var/log/auth.log:ro
+    restart: always
+
   gitolite:
     container_name: gitolite
-    image: jgiannuzzi/gitolite
+    image: jgiannuzzi/gitolite:latest
     env_file: ./git/env
     volumes:
       - ./git/.ssh/keys/:/etc/ssh/keys/
@@ -68,7 +68,7 @@ services:
 
   gitweb:
     container_name: gitweb
-    image: moncheeta/gitweb
+    image: moncheeta/gitweb:latest
     depends_on:
       - gitolite
     volumes:
@@ -81,7 +81,7 @@ services:
 
   csc:
     container_name: csc
-    image: moncheeta/csc
+    image: moncheeta/csc:latest
     environment:
       - DOMAIN=csc.prime8.dev
     env_file: ./csc/env
