@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>prime8</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %}{% endblock %}
 
     <style>
       body {
@@ -31,8 +31,8 @@
   </head>
 
   <body>
-    {% block navbar %} {% endblock %}
+    {% block navbar %}{% endblock %}
 
-    <div id="content">{% block content %} {% endblock %}</div>
+    <div id="content">{% block content %}{% endblock %}</div>
   </body>
 </html>
