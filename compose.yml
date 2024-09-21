@@ -67,10 +67,8 @@ services:
     env_file: ./git/env
     volumes:
       - ./git/gitolite.rc:/etc/gitolite/gitolite.rc:ro
-      - ./git/ssh/keys/host/:/etc/ssh/keys/
-      - ./git/ssh/keys/users/:/var/lib/git/.ssh/
-      - ./git/repos/:/var/lib/git/repositories/
-      - ./git/projects.list:/var/lib/git/projects.list
+      - ./git/.ssh/keys/:/etc/ssh/keys/
+      - ./git/:/var/lib/git/
     ports:
       - "22:22"
 
@@ -81,8 +79,7 @@ services:
       - gitolite
     volumes:
       - ./git/gitweb.conf:/etc/gitweb.conf:ro
-      - ./git/repos/:/srv/git/repositories/:ro
-      - ./git/projects.list:/srv/git/projects.list:ro
+      - ./git/:/srv/git/:ro
     expose:
       - "80"
     networks:
