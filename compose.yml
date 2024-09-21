@@ -6,8 +6,6 @@ services:
       - ./jail:/etc/fail2ban/jail.local:ro
       - /var/log/mail/mail.log:/var/log/mail/mail.log:ro
       - /var/log/auth.log:/var/log/auth.log:ro
-    networks:
-      - www
     restart: always
 
   updates:
@@ -28,8 +26,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    networks:
-      - www
     volumes:
       - ./caddy:/etc/caddy/Caddyfile:ro
       - ./web/data/:/data/caddy/
@@ -47,8 +43,6 @@ services:
       - "465:465"
       - "587:587"
       - "993:993"
-    networks:
-      - www
     volumes:
       - ./mail/data/:/var/mail/
       - ./mail/state/:/var/mail-state/
@@ -70,6 +64,7 @@ services:
       - ./git/:/var/lib/git/
     ports:
       - "22:22"
+    restart: always
 
   gitweb:
     container_name: gitweb
@@ -82,8 +77,7 @@ services:
       - ./git/:/srv/git/:ro
     expose:
       - "80"
-    networks:
-      - www
+    restart: always
 
   csc:
     container_name: csc
@@ -95,8 +89,4 @@ services:
       - ./csc/auth.json:/app/google_auth.json:ro
     expose:
       - "80"
-    networks:
-      - www
-
-networks:
-  www:
+    restart: always
