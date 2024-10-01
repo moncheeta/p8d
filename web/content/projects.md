@@ -5,7 +5,7 @@ template = "projects.html"
 <div class="row-fluid">
     <div class="span4 w-100">
         <h2><a href="https://git.prime8.dev/?p=mos.git">MOS</a></h2>
-        <p>In my free time, I work on MOS, my minimal operating system. This project has deepened my understanding of OS internals, and I'm planning to rewrite it for the RISC-V architecture. While it's currently quite simple, I have plans to expand its features in the future.</p>
+        <p>In my free time, I work on MOS, my minimal operating system. This project has deepened my understanding of OS internals, and I'm planning to rewrite it for the RISC-V architecture. While it's currently quite simple, I have plans to expand its feature set in the future. My goal is to create a simple yet modern operating system without the years of technical debt. Users interact with the terminal through command line and terminal user interfaces designed for ease of use and speed.</p>
     </div>
     <div class="span4 w-100">
         <h2><a href="https://git.prime8.dev/?p=janitor.git">Janitor</a></h2>
