@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% import "nav.html" as nav %}
+{% import "projects.html" as projects %}
 {% block navbar %}
 {{ nav::bar(active="home") }}
 {% endblock %}
@@ -63,8 +64,7 @@
   Terminal enthusiast, learning from Curious George (the curious part, not the
   monkey business). Systems and backend programming are my focus. Striving to
   turn spaghetti code into well-structured algorithms and make every line
-  count with efficiency and creativity. Making computers follow my lead, even
-  when they have their own ideas.
+  count with efficiency and creativity.
 </p>
 <div>
 <div style="display: table; width: 100%">
@@ -96,6 +96,9 @@
     </div>
   </div>
 </div>
+<div>
+	{{ projects::list() }}
+</div>
 <script src="js/wakatime.js"></script>
 <style>
   #content {
@@ -105,13 +108,9 @@
 
   @media (min-width: 1200px) {
     #content {
-      margin: 0 !important;
+      margin-top: 1rem !important;
       padding: 0 !important;
       width: 800px !important;
-      position: absolute !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
     }
   }
 </style>

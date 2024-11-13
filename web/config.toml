@@ -3,5 +3,4 @@ base_url = "https://prime8.dev"
 [extra]
 tabs = [
   { name = "home", url = "/" },
-  { name = "projects", url = "/projects" },
 ]
