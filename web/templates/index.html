@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 
-{% import "nav.html" as nav %}
 {% import "projects.html" as projects %}
-{% block navbar %}
-{{ nav::bar(active="home") }}
-{% endblock %}
 
 {% block title %}
 <title>prime8.dev</title>
@@ -12,19 +8,27 @@
 
 {% block content %}
 <div id="logo">
-  <div>
-    <pre id="firstname">
+	<div>
+		<pre id="firstname">
      _                 _
     | |               (_)
   __| | __ _ _ __ ___  _  __ _ _ __
  / _` |/ _` | '_ ` _ \| |/ _` | '_ \
 | (_| | (_| | | | | | | | (_| | | | |
  \__,_|\__,_|_| |_| |_|_|\__,_|_| |_|
-    </pre>
-    <a href="mailto:damian@prime8.dev">damian@prime8.dev</a>
-  </div>
+		</pre>
+		<div style="display: table; width: 100%">
+			<div class="d-table-cell">
+				<a href="mailto:damian@prime8.dev">damian@prime8.dev</a>
+			</div>
+			<div style="display: table-cell; text-align: right">
+				<pre class="hidden-phone">chicago,</pre>
+				<a class="visible-phone" href="https://www.linkedin.com/in/damian-myrda/">linkedin</a></pre>
+			</div>
+		</div>
+	</div>
   <pre id="middle" class="hidden-phone"></pre>
-  <pre id="lastname" class="hidden-phone">
+	<pre id="lastname" class="hidden-phone">
                          _
                         | |
  _ __ ___  _   _ _ __ __| | __ _
@@ -32,7 +36,7 @@
 | | | | | | |_| | | | (_| | (_| |
 |_| |_| |_|\__, |_|  \__,_|\__,_|
             __/ |
-           |___/</pre>
+illinois   |___/        <a class="align-right" href="https://www.linkedin.com/in/damian-myrda/">linkedin</a></pre>
   <script>
     const heights = [
       document.getElementById("firstname").textContent.split("\n").length,
@@ -60,58 +64,55 @@
     }
   </style>
 </div>
-<p class="lead" style="text-align: center">
-  Terminal enthusiast, learning from Curious George (the curious part, not the
-  monkey business). Systems and backend programming are my focus. Striving to
-  turn spaghetti code into well-structured algorithms and make every line
-  count with efficiency and creativity.
-</p>
-<div>
-<div style="display: table; width: 100%">
-  <div style="display: table-cell; white-space: nowrap">
-    <h3>works with:</h3>
-    <ul>
-      <li style="color: #ffc40d">zig</li>
-      <li style="color: #9d261d">rust</li>
-      <li style="color: #bdb7af">c</li>
-      <li style="color: #049cdb">c++</li>
-      <li style="color: #ffc40d">python</li>
-    </ul>
-    <h3>learning more about:</h3>
-    <ul>
-      <li style="color: #049cdb">go</li>
-      <li style="color: #ffc40d">java</li>
-    </ul>
-    <div class="visible-phone">
-      <h3>activity:</h3>
-      <pre class="activity">Loading activity...</pre>
-    </div>
-  </div>
-  <div style="display: table-cell; vertical-align: middle">
-    <div style="display: flex; justify-content: center">
-      <div class="hidden-phone">
-        <h3>activity:</h3>
-        <pre class="activity">Loading activity...</pre>
-      </div>
-    </div>
-  </div>
-</div>
-<div>
-	{{ projects::list() }}
+<div id="content">
+	<p class="lead" style="text-align: center">
+		Terminal enthusiast, learning from Curious George (the curious part, not the
+		monkey business). Systems and backend programming are my focus. Striving to
+		turn spaghetti code into well-structured algorithms and make every line
+		count with efficiency and creativity.
+	</p>
+	<div style="display: table; width: 100%">
+		<div class="d-table-cell">
+			<h3>techonologies:</h3>
+			<ul>
+					<li style="color: #fff">languages: <span style="color: #fefe54">zig</span>, <span style="color: #ff5555">rust</span>, <span style="color: #55ffff">go</span>, <span style="color: #bbb">c</span>, <span style="color: #00aaaa">c++</span>, <span style="color: #fefe54">python</span></li>
+					<li style="color: #fff">frameworks: <span style="color: #ff5555">tokio</span>, <span style="color: #55ff55">fastapi<span>, <span style="color: #bbb">flask</span></li>
+					<li style="color: #fff">libraries: <span style="color: #ff5555">torch</span>, <span style="color: #fe54fe">kafka</span>
+					<li style="color: #fff">tools: <span style="color: #bbb">git</span>, <span style="color: #55ff55">bash</span>, <span style="color: #aa5500">make</span>, <span style="color: #bbb">gdb</span>, <span style="color: #00aaaa">docker</span></li>
+			</ul>
+			<h3>learning:</h3>
+			<ul>
+				<li style="color: #00aaaa">typescript</li>
+				<li style="color: #a85400">java</li>
+			</ul>
+			<div class="visible-phone">
+				<h3>activity:</h3>
+				<pre class="activity" style="color: #bbb !important">Loading activity...</pre>
+			</div>
+		</div>
+		<div style="display: table-cell; vertical-align: middle">
+			<div style="display: flex; justify-content: center">
+				<div class="hidden-phone">
+					<h3>activity:</h3>
+					<pre class="activity" style="color: #bbb !important">Loading activity...</pre>
+				</div>
+			</div>
+		</div>
+	</div
+	<div>
+		{{ projects::list() }}
+	</div>
 </div>
 <script src="js/wakatime.js"></script>
 <style>
   #content {
     max-width: 800px !important;
-    margin: auto !important;
+    margin: 1rem auto 0 auto !important;
+		padding: 0 !important;
   }
 
-  @media (min-width: 1200px) {
-    #content {
-      margin-top: 1rem !important;
-      padding: 0 !important;
-      width: 800px !important;
-    }
-  }
+	h3 {
+		text-align: center;
+	}
 </style>
 {% endblock %}
