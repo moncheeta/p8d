@@ -31,6 +31,10 @@ git.prime8.dev {
   reverse_proxy http://gitweb:80
   cache
 
+	header {
+		X-Robots-Tag "index, nofollow"
+	}
+
   tls damian@prime8.dev
 }
 
