@@ -1,46 +1,151 @@
 {
-    cache
+	cache
 }
 
+# Root
 prime8.dev {
-    redir https://www.prime8.dev{uri} 301
+	redir https://www.prime8.dev{uri} 301
+
+	# Rate Limiting
+	rate_limit {
+		burst 20  # Allow an initial burst of 20 requests
+		limit 10  # After the burst, allow 10 requests per minute
+	}
+
+	# Security
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" # Enforce HTTPS for 1 year
+		X-Frame-Options "DENY" # Prevent embedding
+		-Server # Remove the Server header
+		Permissions-Policy "geolocation=(), microphone=(), camera=()" # No permissions
+		X-Content-Type-Options "nosniff"  # Prevent MIME-type sniffing
+		Referrer-Policy "no-referrer-when-downgrade"  # Control referrer behavior
+	}
+	tls damian@prime8.dev
 }
 
+# Main Site
 www.prime8.dev {
 	root * /web/
 	file_server
 	try_files {path} {path}.html
-  cache
 
-  handle_errors {
-      @404 {
-          expression {http.error.status_code} == 404
-      }
-      rewrite @404 /404.html
-      file_server
-  }
+	# 404 Page Handling
+	handle_errors {
+		@404 {
+			expression {http.error.status_code} == 404
+		}
+		rewrite @404 /404.html
 
-  tls damian@prime8.dev
-}
+    @429 {
+        expression {http.error.status_code} == 429
+    }
+    rewrite @429 /429.html
 
-mail.prime8.dev {
-  tls damian@prime8.dev
-}
+    @500 {
+        expression {http.error.status_code} == 500
+    }
+    rewrite @500 /500.html
 
-git.prime8.dev {
-  reverse_proxy http://gitweb:80
-  cache
-
-	header {
-		X-Robots-Tag "index, nofollow"
+		file_server
 	}
 
-  tls damian@prime8.dev
+	# Caching
+	cache
+	header /static/* {
+		Cache-Control "public, max-age=86400; immutable" # Cache for 1 day
+	}
+
+	# Rate Limiting
+	rate_limit {
+		burst 20  # Allow an initial burst of 20 requests
+		limit 10  # After the burst, allow 10 requests per minute
+	}
+
+	# Security
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" # Enforce HTTPS for 1 year
+		X-Frame-Options "DENY" # Prevent embedding
+		-Server # Remove the Server header
+		Permissions-Policy "geolocation=(), microphone=(), camera=()" # No permissions
+		X-Content-Type-Options "nosniff"  # Prevent MIME-type sniffing
+		Referrer-Policy "no-referrer-when-downgrade"  # Control referrer behavior
+	}
+	tls damian@prime8.dev
 }
 
-csc.prime8.dev {
-  reverse_proxy http://csc:80
-  cache
+# Mail Server
+mail.prime8.dev {
+	header {
+		X-Robots-Tag "noindex, nofollow"  # Prevent search engine indexing
 
-  tls damian@prime8.dev
+		# Security
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" # Enforce HTTPS for 1 year
+		X-Frame-Options "DENY" # Prevent embedding
+		-Server # Remove the Server header
+		Permissions-Policy "geolocation=(), microphone=(), camera=()" # No permissions
+		X-Content-Type-Options "nosniff"  # Prevent MIME-type sniffing
+		Referrer-Policy "no-referrer-when-downgrade"  # Control referrer behavior
+	}
+	tls damian@prime8.dev
+}
+
+# Git Server
+git.prime8.dev {
+	reverse_proxy http://gitweb:80
+
+	# Caching
+	cache
+	header /static/* {
+		Cache-Control "public, max-age=86400; immutable" # Cache for 1 day
+	}
+
+	# Rate Limiting
+	rate_limit {
+		burst 20  # Allow an initial burst of 20 requests
+		limit 10  # After the burst, allow 10 requests per minute
+	}
+
+	header {
+		X-Robots-Tag "noindex, nofollow"  # Prevent search engine indexing
+
+		# Security
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" # Enforce HTTPS for 1 year
+		X-Frame-Options "DENY" # Prevent embedding
+		-Server # Remove the Server header
+		Permissions-Policy "geolocation=(), microphone=(), camera=()" # No permissions
+		X-Content-Type-Options "nosniff"  # Prevent MIME-type sniffing
+		Referrer-Policy "no-referrer-when-downgrade"  # Control referrer behavior
+	}
+	tls damian@prime8.dev
+}
+
+# CSC Website
+csc.prime8.dev {
+	reverse_proxy http://csc:80
+
+	# Caching
+	cache
+	header /static/* {
+		Cache-Control "public, max-age=86400; immutable" # Cache for 1 day
+	}
+
+	# Rate Limiting
+	rate_limit {
+		burst 20  # Allow an initial burst of 20 requests
+		limit 10  # After the burst, allow 10 requests per minute
+	}
+
+	header {
+		X-Robots-Tag "noindex, nofollow"  # Prevent search engine indexing
+
+		# Security
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" # Enforce HTTPS for 1 year
+		X-Frame-Options "DENY" # Prevent embedding
+		-Server # Remove the Server header
+		Permissions-Policy "geolocation=(), microphone=(), camera=()" # No permissions
+		X-Content-Type-Options "nosniff"  # Prevent MIME-type sniffing
+		Referrer-Policy "no-referrer-when-downgrade"  # Control referrer behavior
+	}
+	tls damian@prime8.dev
 }
