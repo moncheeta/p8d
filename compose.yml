@@ -3,15 +3,16 @@ services:
   updates:
     container_name: updates
     image: containrrr/watchtower:latest
-    volumes: [/var/run/docker.sock:/var/run/docker.sock]
-    command: [--interval, '120', --cleanup]
+    volumes: [ /var/run/docker.sock:/var/run/docker.sock ]
+    command: [ --interval, '3600', --cleanup, --rolling-restart ]
     restart: always
   web:
     container_name: web
     image: moncheeta/website:latest
-    ports: [80:80, 443:443]
+    ports: [ 80:80, 443:443 ]
     volumes:
       - ./caddy:/etc/caddy/Caddyfile:ro
+      - ./auth.conf:/etc/caddy/auth.conf:ro
       - ./web/data/:/data/caddy/
       - ./web/config/:/config/caddy/
     restart: always
@@ -20,7 +21,7 @@ services:
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
     hostname: mail.prime8.dev
     env_file: ./mail/env
-    ports: [25:25, 143:143, 465:465, 587:587, 993:993]
+    ports: [ 25:25, 143:143, 465:465, 587:587, 993:993 ]
     volumes:
       - ./mail/data/:/var/mail/
       - ./mail/state/:/var/mail-state/
@@ -28,30 +29,30 @@ services:
       - ./mail/config/:/tmp/docker-mailserver/
       - ./web/data/certificates/acme-v02.api.letsencrypt.org-directory/mail.prime8.dev/mail.prime8.dev.crt:/etc/certificates/cert.pem
       - ./web/data/certificates/acme-v02.api.letsencrypt.org-directory/mail.prime8.dev/mail.prime8.dev.key:/etc/certificates/key.pem
-    depends_on: [web]
+    depends_on: [ web ]
     restart: always
   gitolite:
     container_name: gitolite
     image: jgiannuzzi/gitolite:latest
     env_file: ./git/env
-    volumes: [./git/.ssh/keys/:/etc/ssh/keys/, ./git/:/var/lib/git/]
-    ports: [22:22]
+    volumes: [ ./git/.ssh/keys/:/etc/ssh/keys/, ./git/:/var/lib/git/ ]
+    ports: [ 22:22 ]
     restart: always
   gitweb:
     container_name: gitweb
     image: moncheeta/gitweb:latest
-    depends_on: [gitolite]
+    depends_on: [ gitolite ]
     volumes:
       - ./git/gitweb.conf:/etc/gitweb.conf:ro
       - ./git/theme/:/usr/share/gitweb/theme/:ro
       - ./git/:/srv/git/:ro
-    expose: ['80']
+    expose: [ 80 ]
     restart: always
   csc:
     container_name: csc
     image: moncheeta/csc:latest
-    environment: [DOMAIN=csc.prime8.dev]
+    environment: [ DOMAIN=csc.prime8.dev ]
     env_file: ./csc/env
-    volumes: [./csc/auth.json:/app/google_auth.json:ro]
-    expose: ['80']
+    volumes: [ ./csc/auth.json:/app/google_auth.json:ro ]
+    expose: [ 80 ]
     restart: always

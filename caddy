@@ -6,12 +6,6 @@
 prime8.dev {
 	redir https://www.prime8.dev{uri} 301
 
-	# Rate Limiting
-	rate_limit {
-		burst 20  # Allow an initial burst of 20 requests
-		limit 10  # After the burst, allow 10 requests per minute
-	}
-
 	# Security
 	header {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" # Enforce HTTPS for 1 year
@@ -56,12 +50,6 @@ www.prime8.dev {
 		Cache-Control "public, max-age=86400; immutable" # Cache for 1 day
 	}
 
-	# Rate Limiting
-	rate_limit {
-		burst 20  # Allow an initial burst of 20 requests
-		limit 10  # After the burst, allow 10 requests per minute
-	}
-
 	# Security
 	header {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" # Enforce HTTPS for 1 year
@@ -100,12 +88,6 @@ git.prime8.dev {
 		Cache-Control "public, max-age=86400; immutable" # Cache for 1 day
 	}
 
-	# Rate Limiting
-	rate_limit {
-		burst 20  # Allow an initial burst of 20 requests
-		limit 10  # After the burst, allow 10 requests per minute
-	}
-
 	header {
 		X-Robots-Tag "noindex, nofollow"  # Prevent search engine indexing
 
@@ -128,12 +110,6 @@ csc.prime8.dev {
 	cache
 	header /static/* {
 		Cache-Control "public, max-age=86400; immutable" # Cache for 1 day
-	}
-
-	# Rate Limiting
-	rate_limit {
-		burst 20  # Allow an initial burst of 20 requests
-		limit 10  # After the burst, allow 10 requests per minute
 	}
 
 	header {
